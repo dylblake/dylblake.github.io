@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="public/js/three.js" ></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Andi Blake - Full Stack Developer</title>
@@ -16,9 +17,55 @@
 <p id="bod">Welcome</p><br>
 <button type="button" onmouseleave="sayBye()" onclick="sayHello()">Press Me!</button>
 <br><br>
-<!-- add 3js interactive menu !-->
 
+ <body>
 <script>
+
+    var scene = new THREE.Scene();
+	var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
+
+	var renderer = new THREE.WebGLRenderer();
+	renderer.setSize( window.innerWidth, window.innerHeight );
+	document.body.appendChild( renderer.domElement );
+
+	  var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+	  var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+	  var cube = new THREE.Mesh( geometry, material );
+		scene.add( cube );
+
+
+		var mesh;
+
+		var mixer = new Three.AnimationMixer(mesh);
+		var clips = mesh.animations;
+
+
+		function update(){
+		      mixer.update( deltaSeconds );
+		}
+
+		var clip = Three.AnimationClip.findByName(clips, 'dance');
+		var action = mixer.clipAction(clip);
+		action.play();
+
+		clips.forEach(function (clip) {
+		    mixer.clipAction(clip).play();
+
+		    }):
+
+		camera.position.z = 5;
+
+		var animate = function () {
+		requestAnimationFrame( animate );
+
+		cube.rotation.x += 0.1;
+		cube.rotation.y += 0.1;
+
+		renderer.render(scene, camera);
+};
+
+	 animate();
+
   function sayHello(){
     document.getElementById("bod").innerHTML = 'You Clicked!';
     console.log('Hello');
@@ -39,7 +86,7 @@
     <a href="https://facebook.com/andiblake_"><img height="42" width="42" src="public/img/facebook.png" class="ico-facebook" /></a>
     <a href="https://twitter.com/andiblake_"><img height="42" width="42" src="public/img/twitter.png" class="ico-twitter" /></a>
     <a href="https://github.com/andiblake"><img height="42" width="42" src="public/img/github.png" class="ico-git" /></a>
-    <a href="https://instagram.com/trulytrapcat/"><img height="42" width="42" src="public/img/insta.png" class="ico-insta" /></a>
+    <a href="https://instagram.com/andiblake_/"><img height="42" width="42" src="public/img/insta.png" class="ico-insta" /></a>
     <a href="https://linkedin.com"><img height="42" width="42" src="public/img/linkedin.png" class="ico-linkedin"/></a>
   </footer>
 
